@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'FOOD',
     'multiselectfield',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

@@ -9,6 +9,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
+from rest_framework.generics import ListAPIView
+from rest_framework.filters import SearchFilter
+
 # Create your views here.
 
 @csrf_exempt
@@ -69,3 +72,10 @@ def Crud(request, pk=None):
             return Response({'msg' : 'Data deleted'}, status=status.HTTP_302_FOUND)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+#For Search data we gonnna use generic class
+class Search_data(ListAPIView):
+    queryset = Pizza.objects.all()
+    serializer_class = PizzaSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['pizza_type', 'pizza_size']
