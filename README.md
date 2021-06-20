@@ -31,7 +31,7 @@ https://github.com/SurajLodh/Assignment1
 done!!
 
 
-# API Endpoints
+# API
 
 ## Inputs 
 {
@@ -51,12 +51,13 @@ done!!
 5. HTTP_400_OK                   {'Data deleted'}
 6. HTTP_204_NO_CONTENT             ------------
 
+## Endpoints
 
    Route                 Method                               Input                                                   Output                                   
-1 . /create                POST        {‘type’:regular;‘size’:medium;‘toppings’:[‘onion’,’tomato']}                    -----                                            
-2 . /alldata               GET                                -------                           {'id':1;‘type’:regular;‘size’:medium;‘toppings’:[‘onion’,’tomato']}
-3 . /searchdata            GET                        filter '/searchdata/?search=regular'                            ------
-4 . /crud/<int:pk>/    PUT,PATCH,DELETE      {‘type’:square;‘size’:small;‘toppings’:[‘onion’,’capsicum']}             ------
+1. /create                POST        {‘type’:regular;‘size’:medium;‘toppings’:[‘onion’,’tomato']}                    -----                                            
+2. /alldata               GET                                -------                           {'id':1;‘type’:regular;‘size’:medium;‘toppings’:[‘onion’,’tomato']}
+3. /searchdata            GET                        filter '/searchdata/?search=regular'                            ------
+4. /crud/<int:pk>/    PUT,PATCH,DELETE      {‘type’:square;‘size’:small;‘toppings’:[‘onion’,’capsicum']}             ------
 
 
 
