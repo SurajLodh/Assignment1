@@ -23,19 +23,14 @@ def Add_new(request):
         serializer = PizzaSerializer(data = pythondata)
         if serializer.is_valid():
             serializer.save()
-            res = {'msg':'data created !'}
-            json_data = JSONRenderer().render(res)
-            return HttpResponse(json_data, content_type='application/json')
+            return Response({'msg' : 'Data Created !!'}, status=status.HTTP_201_CREATED)
         else:
-            Json_data = JSONRenderer().render(serializer.errors)
-            return HttpResponse(Json_data, content_type='application/json')
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 def View_All(request):
     stu = Pizza.objects.all()
     serializer = PizzaSerializer(stu, many=True)
-    # json_data = JSONRenderer().render(serializer.data)
-    # return HttpResponse(json_data, content_type='application/json')
     return JsonResponse(serializer.data, safe=False)
 
 
@@ -44,34 +39,31 @@ def Crud(request, pk=None):
     if request.method == 'PUT':
         id = pk
         stu = Pizza.objects.get(pk = id)
-        # pythondata = JSONParser().parse(stream)
-        serializer = PizzaSerializer(stu, partial=True) #For_partial_update(Not_Required All fields)
-        # serializer = PizzaSerializer(stu, data = pythondata, partial=True) #For_complete_update(Required All fields)
+        serializer = PizzaSerializer(stu, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response({'msg' : 'Data updated !!'}, status=status.HTTP_200_OK)
         else:
-            return Response(serializer.errors, status=status.HTTP_502_BAD_GATEWAY)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     if request.method == 'PATCH':
         id = pk
         stu = Pizza.objects.get(pk = id)
-        # serializer = PizzaSerializer(stu, data = pythondata, partial=True) #For_partial_update(Not_Required All fields)
-        serializer = PizzaSerializer(stu, partial=True) #For_complete_update(Required All fields)
+        serializer = PizzaSerializer(stu, partial=False)
         if serializer.is_valid():
             serializer.save()
-            return Response({'msg' : 'Data updated !!'}, status=status.HTTP_200_OK)
+            return Response({'msg' : 'Data updated !!'}, status=status.HTTP_206_PARTIAL_CONTENT)
         else:
-            return Response(serializer.errors, status=status.HTTP_502_BAD_GATEWAY)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     if request.method == 'DELETE':
         id = pk
         stu = Pizza.objects.get(pk=id)
         if id is not None:
             stu.delete()
-            return Response({'msg' : 'Data deleted'}, status=status.HTTP_302_FOUND)
+            return Response({'msg' : 'Data deleted'}, status=status.HTTP_400_OK)
         else:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
 #For Search data we gonnna use generic class
 class Search_data(ListAPIView):

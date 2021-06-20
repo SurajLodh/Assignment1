@@ -4,8 +4,8 @@ from . import views
 
 
 urlpatterns = [
-    path('create', views.Add_new, name='add_new'),
-    path('alldata', views.View_All, name='all_data'),
-    path('searchdata', views.Search_data, name='searchdata'),
-
+    path('create/', views.Add_new, name='add_new'),
+    path('alldata/', views.View_All, name='all_data'),
+    path('searchdata/', views.Search_data, name='searchdata'),
+    path('crud/<int:pk>/', views.Crud),
 ]
