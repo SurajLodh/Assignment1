@@ -1,4 +1,3 @@
-# API
 # Software Requirement
 
 1. Python 3.6+
@@ -35,7 +34,12 @@ done!!
 # API Endpoints
 
 ## Inputs 
-{‘type’:regular or square;‘size’:small or medium or large;‘toppings’:[‘onion’,’tomato','corn','capsicum','cheese','jalapeno']}
+{
+    ‘type’:'regular' or 'square';
+    ‘size’:'small' or 'medium' or 'large';
+    ‘toppings’:
+        [‘onion’,’tomato','corn','capsicum','cheese','jalapeno']
+}
 
 ## Response Meaaseges
     
